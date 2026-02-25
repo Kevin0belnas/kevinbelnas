@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo1.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kevin Belnas | Full Stack Developer</title>
+    
+    <!-- Dark mode script - runs before anything else to prevent FOUC -->
+    <script>
+      // On page load, set the theme based on localStorage or system preference
+      (function() {
+        const storedTheme = localStorage.getItem('theme');
+        const root = document.documentElement;
+        
+        if (storedTheme === 'dark') {
+          root.classList.add('dark');
+        } else if (storedTheme === 'light') {
+          root.classList.remove('dark');
+        } else {
+          // No stored preference, check system preference
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            root.classList.add('dark');
+          } else {
+            root.classList.remove('dark');
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
