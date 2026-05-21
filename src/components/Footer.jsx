@@ -1,59 +1,20 @@
-import React from 'react'
-import { FiGithub, FiLinkedin, FiHeart, FiFacebook } from 'react-icons/fi'
+// src/components/Footer.jsx
+import React from 'react';
+import { Heart } from 'lucide-react';
 
 const Footer = () => {
-  // const currentYear = new Date().getFullYear()
-    const currentYear = 2025
-
   return (
-    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 
-                      dark:border-gray-800 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center">
-          {/* Social Links */}
-          <div className="flex space-x-6 mb-6">
-            <a
-              href="https://github.com/Kevin0belnas?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-400 hover:text-sky-500 
-                       dark:hover:text-sky-400 transition-colors"
-            >
-              <FiGithub size={24} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/kevin-belnas-9873a4350/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-400 hover:text-sky-500 
-                       dark:hover:text-sky-400 transition-colors"
-            >
-              <FiLinkedin size={24} />
-            </a>
-            <a
-              href="https://www.facebook.com/kevinwebstudio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-400 hover:text-sky-500 
-                       dark:hover:text-sky-400 transition-colors"
-            >
-              <FiFacebook size={24} />
-            </a>
-          </div>
-          
-          {/* Copyright */}
-          <p className="text-gray-600 dark:text-gray-400 text-center mb-2">
-            © {currentYear} Kevin Belnas. All rights reserved.
-          </p>
-          
-          {/* Made with love */}
-          {/* <p className="text-gray-500 dark:text-gray-500 text-sm flex items-center gap-1">
-            Made with <FiHeart className="text-red-500" /> using React & Tailwind CSS
-          </p> */}
-        </div>
+    <footer className="bg-gray-900 text-white py-8">
+      <div className="max-w-6xl mx-auto px-5 text-center">
+        <p className="text-gray-400">
+          © {new Date().getFullYear()} Kevin T. Belnas. Full Stack Developer & IT Systems Specialist.
+        </p>
+        <p className="text-gray-500 text-sm mt-2 flex items-center justify-center gap-1">
+          Built with React, Vite & Tailwind CSS <Heart size={14} className="text-red-500 fill-red-500" />
+        </p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
