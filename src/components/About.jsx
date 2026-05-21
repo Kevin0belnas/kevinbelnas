@@ -1,73 +1,87 @@
-// src/components/About.jsx
-import React from 'react';
-import { Award, Users, Database, Shield } from 'lucide-react';
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 
 const About = () => {
-  const highlights = [
-    { icon: Award, text: 'Full-time core engineer within 5 months of internship', color: 'blue' },
-    { icon: Database, text: 'Handled 100,000+ leads in custom CRM', color: 'blue' },
-    { icon: Users, text: 'Managed 15-agent call center infrastructure', color: 'blue' },
-    { icon: Shield, text: 'Secure LAN deployment & server management', color: 'blue' },
-  ];
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  const stats = [
+    { value: "100k+", label: "Records Managed", icon: "📊" },
+    { value: "15+", label: "Agents Supported", icon: "👥" },
+    { value: "~10", label: "Production Sites", icon: "🚀" },
+  ]
 
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="section-container">
-        <div className="text-center mb-12">
-          <h2 className="section-title">About Me</h2>
-          <div className="w-20 h-1 bg-amber-500 mx-auto mb-4"></div>
-          <p className="section-subtitle max-w-2xl mx-auto">
-            Resourceful Full Stack Developer and IT Systems Specialist with a proven track record 
-            of engineering high-impact web software and communication systems.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div className="space-y-6 animate-fade-in">
-            <p className="text-gray-700 leading-relaxed">
-              I'm a passionate developer who thrives at the intersection of <span className="text-blue-600 font-semibold">full-stack development</span> 
-               <span className="ml-1">and</span> <span className="text-blue-600 font-semibold">IT systems infrastructure</span>. My journey from IT intern to core engineer 
-              in just 5 months at Attitech Company reflects my dedication to technical excellence and rapid problem-solving.
+    <section id="about" className="py-20 md:py-32 bg-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-sky-50 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <motion.span
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.2 }}
+            className="inline-block px-4 py-2 bg-sky-50 text-sky-600 rounded-full text-sm font-medium mb-4"
+          >
+            About Me
+          </motion.span>
+          <h2 className="text-4xl md:text-5xl font-bold text-navy-900 mb-4">
+            Professional Overview
+          </h2>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={isInView ? { width: 96 } : {}}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="h-1 bg-gradient-to-r from-sky-400 to-sky-600 mx-auto rounded-full"
+          />
+        </motion.div>
+        
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="bg-white rounded-2xl p-8 md:p-12 shadow-xl shadow-sky-100/50 border border-sky-50 relative overflow-hidden group hover:shadow-2xl hover:shadow-sky-200/50 transition-all duration-500"
+          >
+            {/* Decorative gradient */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+            
+            <p className="text-lg text-navy-900/80 leading-relaxed mb-10">
+              Resourceful Full Stack Developer and IT Systems Specialist with a proven track record of 
+              engineering, deploying, and maintaining high-impact web software and communication systems 
+              inside call center environments. Expertise spans building data-dense local CRMs handling 
+              100k+ records, implementing complex full-stack web solutions, and integrating third-party 
+              AI APIs.
             </p>
-            <p className="text-gray-700 leading-relaxed">
-              I specialize in building data-dense local CRMs handling <span className="font-semibold">100k+ records</span>, implementing 
-              complex full-stack web solutions, and integrating third-party AI APIs. My expertise extends to 
-              managing <span className="font-semibold">VICIdial server networks</span> and maintaining near-zero downtime 
-              for active call center operations.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4 pt-4">
-              {highlights.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-3 bg-blue-50 rounded-lg p-3">
-                  <item.icon className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                  <span className="text-sm text-gray-700">{item.text}</span>
-                </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  className="text-center p-6 rounded-xl bg-gradient-to-br from-sky-50 to-white shadow-md hover:shadow-lg transition-all border border-sky-100"
+                >
+                  <div className="text-3xl mb-2">{stat.icon}</div>
+                  <div className="text-3xl font-bold text-sky-500 mb-1">{stat.value}</div>
+                  <div className="text-navy-900/60 text-sm">{stat.label}</div>
+                </motion.div>
               ))}
             </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-6 shadow-sm border border-blue-100 animate-slide-up">
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
-              Core Philosophy
-            </h3>
-            <p className="text-gray-700 mb-4 leading-relaxed">
-              "Building robust, secure, and scalable systems that empower teams to work smarter, not harder."
-            </p>
-            <div className="border-t border-blue-100 pt-4 mt-2">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-600">Education:</span>
-                <span className="font-semibold text-gray-800">BS Information Technology</span>
-              </div>
-              <div className="flex justify-between items-center mt-2">
-                <span className="text-gray-600">Institution:</span>
-                <span className="font-semibold text-gray-800">Cebu Technological University – Main Campus</span>
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default About;
+export default About

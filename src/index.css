@@ -1,75 +1,47 @@
 @import "tailwindcss";
 
+@theme {
+  --color-sky-50: #f0f9ff;
+  --color-sky-100: #e0f2fe;
+  --color-sky-200: #bae6fd;
+  --color-sky-300: #7dd3fc;
+  --color-sky-400: #38bdf8;
+  --color-sky-500: #0ea5e9;
+  --color-sky-600: #0284c7;
+  --color-sky-700: #0369a1;
+  --color-sky-800: #075985;
+  --color-sky-900: #0c4a6e;
+  --color-sky-950: #082f49;
+  --color-navy-900: #0a1628;
+  --color-navy-800: #0f1f3d;
+  --color-navy-700: #162a50;
+}
 
 @layer base {
-  html {
+  body {
+    @apply bg-white text-navy-900 antialiased;
     scroll-behavior: smooth;
   }
-  body {
-    @apply bg-white text-gray-800;
-  }
+  
   ::-webkit-scrollbar {
     width: 8px;
   }
+  
   ::-webkit-scrollbar-track {
-    @apply bg-gray-100;
+    @apply bg-navy-900;
   }
+  
   ::-webkit-scrollbar-thumb {
-    @apply bg-blue-500 rounded-full;
+    @apply bg-sky-500/50 rounded-full;
   }
+  
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-blue-700;
+    @apply bg-sky-500;
   }
 }
 
-@layer components {
-  .section-container {
-    @apply max-w-6xl mx-auto px-5 py-16 md:py-20;
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-sky-400 to-sky-600 bg-clip-text text-transparent;
   }
-  .section-title {
-    @apply text-3xl md:text-4xl font-bold text-gray-900 mb-3;
-  }
-  .section-subtitle {
-    @apply text-lg text-gray-600 mb-10 md:mb-12;
-  }
-  .card-hover {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
-  }
-}
-
-/* Add to the end of your src/index.css */
-
-@keyframes blob {
-  0% { transform: translate(0px, 0px) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
-  100% { transform: translate(0px, 0px) scale(1); }
-}
-
-.animate-blob {
-  animation: blob 7s infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.bg-grid-pattern {
-  background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
-                    linear-gradient(to bottom, #80808012 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease-out;
-}
-
-/* For dark mode support if needed */
-.dark .bg-grid-pattern {
-  opacity: 0.05;
 }
